@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run the main script when the container starts
-CMD ["python", "main.py"]
+CMD  ["streamlit", "run", "main.py", "--server.port", "7860", "--server.address", "0.0.0.0"]
