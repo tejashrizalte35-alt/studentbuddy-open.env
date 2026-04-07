@@ -3,3 +3,4 @@ openenv
 pydantic
 fastapi
 uvicorn
+streamlit
