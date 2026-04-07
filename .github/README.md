@@ -1,4 +1,4 @@
-# **Virtual Study Buddy (OpenEnv)**
+
 ---
 title: Student Study Buddy
 emoji: 📚
