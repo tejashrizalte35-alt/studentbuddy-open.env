@@ -1,5 +1,12 @@
 # **Virtual Study Buddy (OpenEnv)**
-
+---
+title: Student Study Buddy
+emoji: 📚
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
 ## **Project Overview**
 This project is an AI environment built using the **OpenEnv** framework. It simulates a student's study session where an agent must balance completing academic tasks with managing a dynamic "stress" level. The environment is designed to test how an AI can prioritize work based on deadlines and self-care.
 
