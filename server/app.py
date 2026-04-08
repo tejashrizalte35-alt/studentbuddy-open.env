@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from env.environment import StudentEnv
 from env.models import Action
+import uvicorn
 
 app = FastAPI()
 env = StudentEnv()
@@ -19,5 +20,8 @@ async def state():
     return env.state()
 
 def main():
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
+
+# ADD THIS PART AT THE VERY END
+if __name__ == "__main__":
+    main()
