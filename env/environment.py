@@ -12,8 +12,7 @@ def reset(self):
     self.time_left = 5
     self.stress = 0.5
     return self._get_obs()
-
-    def _get_obs(self):
+def _get_obs(self):
         # Returns the current state packaged in the Observation model
         return Observation(
             tasks=self.tasks,
