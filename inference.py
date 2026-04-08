@@ -5,7 +5,7 @@ from env.models import Action
 app = FastAPI()
 env = StudentEnv()
 step_count = 0
-
+import sys
 def run_task(task_name):
     sys.stdout.write(f"[START] task={task_name}\n")
     sys.stdout.flush()
