@@ -1,2 +1,5 @@
+streamlit
+openenv
 pydantic
-openai
+fastapi
+uvicorn
