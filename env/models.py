@@ -1,13 +1,10 @@
 from pydantic import BaseModel
 from typing import List, Optional
-
-# 1. Update Task to be a BaseModel
-class Task(BaseModel):
-    title: str
-    deadline: int
-    priority: int
-    task_type: str = "assignment"
-    completed: bool = False
+class Task:
+    def __init__(self, title, completed=False, deadline=0):
+        self.title = title
+        self.completed = completed
+        self.deadline = deadline
 
 # Now Pydantic can successfully generate the schema for this list
 class Observation(BaseModel):
