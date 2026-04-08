@@ -1,5 +1,18 @@
+# Example of what your task definitions might look like
 TASKS = [
-    {"name": "easy", "goal": "complete high priority task"},
-    {"name": "medium", "goal": "complete 2 tasks efficiently"},
-    {"name": "hard", "goal": "complete all with low stress"}
-]
+    {
+        "title": "Complete Math Assignment",
+        "description": "Solve 10 calculus problems",
+        "points": 10
+    },
+    {
+        "title": "Read Physics Chapter",
+        "description": "Read Chapter 5 on Electromagnetism",
+        "points": 5
+    },
+    {
+        "title": "Write Essay Outline",
+        "description": "Create a structure for the history paper",
+        "points": 15
+    }
+] 
