@@ -9,6 +9,8 @@ dependencies = [
     "pydantic",
     "openai"
 ]
+[project.scripts]
+server = "main:app"
 
 [build-system]
 requires = ["setuptools>=61.0"]
