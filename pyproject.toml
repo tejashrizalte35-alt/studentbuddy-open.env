@@ -10,7 +10,7 @@ dependencies = [
     "openai"
 ]
 [project.scripts]
-server = "main:app"
+server = "server.app:app"
 
 [build-system]
 requires = ["setuptools>=61.0"]
