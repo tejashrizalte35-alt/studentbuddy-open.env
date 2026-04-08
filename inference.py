@@ -20,18 +20,26 @@ while not done:
     step_num += 1
     unfinished_tasks = [t.title for t in obs.tasks if not t.completed]
     
-    if unfinished_tasks:
-        response = client.chat.completions.create(
-            model="gpt-4o", # Meta/Scaler usually supports gpt-4o or llama-3
-            messages=[
-                {"role": "system", "content": "You are a helpful study buddy. Pick one task from the list and return ONLY the task name."},
-                {"role": "user", "content": f"Remaining tasks: {unfinished_tasks}"}
-            ]
-        )
-
-        chosen_task_title = response.choices[0].message.content.strip()
-         if chosen_task_title in unfinished_tasks:
-             action = Action(action_type="complete", task_title=chosen_task_title)
+   if unfinished_tasks:
+        try:
+            # Wrap the API call in a try block
+            response = client.chat.completions.create(
+                model="gpt-4o", 
+                messages=[
+                    {"role": "system", "content": "You are a helpful study buddy. Pick one task and return ONLY the task name."},
+                    {"role": "user", "content": f"Remaining tasks: {unfinished_tasks}"}
+                ],
+                timeout=30.0 # Add a timeout so it doesn't hang forever
+            )
+            chosen_task_title = response.choices[0].message.content.strip()
+        except Exception as e:
+            # If the API fails, print the error and use a fallback
+            print(f"API Call failed: {e}")
+            chosen_task_title = unfinished_tasks[0] 
+        
+        # Now define the action using the result (or the fallback)
+        if chosen_task_title in unfinished_tasks:
+            action = Action(action_type="complete", task_title=chosen_task_title)
         else:
             action = Action(action_type="complete", task_title=unfinished_tasks[0])
     else:
