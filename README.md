@@ -3,7 +3,7 @@ title: Student Study Buddy
 emoji: 📚
 colorFrom: yellow
 colorTo: green
-sdk: streamlit
+sdk: Docker
 sdk_version: 1.56.0
 python_version: 3.12
 app_file: app.py
