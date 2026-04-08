@@ -2,16 +2,16 @@ from env.models import Observation, Action, Task
 
 class StudentEnv:
     def __init__(self):
-        self.reset()
-self.tasks = [
-    Task(title="Math Homework", completed=False),
-    Task(title="Science Lab Report", completed=False),
-    Task(title="History Reading", completed=False),
-    Task(title="Coding Project", completed=False) # Adding a 4th for safety!
-]
-        self.time_left = 5
-        self.stress = 0.5
-        return self._get_obs()
+def reset(self):
+    self.tasks = [
+        Task(title="Math Homework", completed=False, deadline=3),
+        Task(title="Science Lab Report", completed=False, deadline=4),
+        Task(title="History Reading", completed=False, deadline=2),
+        Task(title="Coding Project", completed=False, deadline=5)
+    ]
+    self.time_left = 5
+    self.stress = 0.5
+    return self._get_obs()
 
     def _get_obs(self):
         # Returns the current state packaged in the Observation model
