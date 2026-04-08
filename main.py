@@ -1,30 +1,22 @@
+from fastapi import FastAPI, Request
 from env.environment import StudentEnv
 from env.models import Action
-from env.grader import grade  # Import your grader to see your final score
 
+app = FastAPI()
 env = StudentEnv()
-obs = env.reset()
-done = False
-total_reward = 0
 
-print("--- Starting Study Session ---")
-# Run the loop until the environment says 'done'
-while not done:
-    target_task = next((t for t in obs.tasks if not t.completed), None)
-    #action = Action(action_type="complete", task_title="Math") 
-    if target_task:
-        # If there's work to do, complete it
-        action = Action(action_type="complete", task_title=target_task.title)
-        print(f"Action: Completing {target_task.title}")
-    else:
-        # If all tasks are finished, take a rest to lower stress
-        action = Action(action_type="rest", task_title="")
-        print("Action: All tasks done! Taking a rest.")
-    obs, reward, done, _ = env.step(action)
-    total_reward += reward
-    print(f"Action taken. Current Reward: {reward} | Total: {total_reward}| Stress: {obs.stress:.2f}")
+# This is where you put the app.post for the evaluator
+@app.post("/reset")
+async def reset():
+    obs = env.reset()
+    # The evaluator expects the state/observation back
+    return obs 
 
-# After the loop finishes, evaluate the performance
-final_score = grade(env)
-print("--- Session Finished ---")
-print(f"Final Grader Score: {final_score}")
+@app.post("/step")
+async def step(action: Action):
+    obs, reward, done, info = env.step(action)
+    return {"observation": obs, "reward": reward, "done": done, "info": info}
+
+@app.get("/state")
+async def state():
+    return env.state()
