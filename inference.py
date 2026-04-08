@@ -25,10 +25,11 @@ def step(action: Action):
     step_count += 1
 
     obs, reward, done, info = env.step(action)
+    print("[START] task=StudentEnv", flush=True)
     
     print(f"[STEP] step={step_count} reward={reward}", flush=True)
     if done:
-        print(f"[END] task=StudentEnv score={reward} steps={step_count}", flush=True)
+    print(f"[END] task=StudentEnv score={reward} steps={step_count}", flush=True)
     return {
         "observation": obs,
         "reward": reward,
