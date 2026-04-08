@@ -3,14 +3,12 @@ from env.models import Observation, Action, Task
 class StudentEnv:
     def __init__(self):
         self.reset()
-
-    def reset(self):
-        # Initializing tasks as a list of Task objects
-        self.tasks = [
-            Task(title="Math", deadline=2, priority=3),
-            Task(title="AI Project", deadline=5, priority=2),
-            Task(title="Reading", deadline=3, priority=1)
-        ]
+self.tasks = [
+    Task(title="Math Homework", completed=False),
+    Task(title="Science Lab Report", completed=False),
+    Task(title="History Reading", completed=False),
+    Task(title="Coding Project", completed=False) # Adding a 4th for safety!
+]
         self.time_left = 5
         self.stress = 0.5
         return self._get_obs()
