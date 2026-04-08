@@ -30,8 +30,8 @@ while not done:
         )
 
         chosen_task_title = response.choices[0].message.content.strip()
-    
-            action = Action(action_type="complete", task_title=chosen_task_title)
+         if chosen_task_title in unfinished_tasks:
+             action = Action(action_type="complete", task_title=chosen_task_title)
         else:
             action = Action(action_type="complete", task_title=unfinished_tasks[0])
     else:
