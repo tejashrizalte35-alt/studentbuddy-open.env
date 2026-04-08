@@ -1,18 +1,20 @@
 from env.models import Observation, Action, Task
-
 class StudentEnv:
     def __init__(self):
-def reset(self):
-    self.tasks = [
-        Task(title="Math Homework", completed=False, deadline=3),
-        Task(title="Science Lab Report", completed=False, deadline=4),
-        Task(title="History Reading", completed=False, deadline=2),
-        Task(title="Coding Project", completed=False, deadline=5)
-    ]
-    self.time_left = 5
-    self.stress = 0.5
-    return self._get_obs()
-def _get_obs(self):
+        self.reset()
+
+    def reset(self):
+        self.tasks = [
+    Task(title="Math Homework", completed=False, deadline=3, reward_value=10),
+    Task(title="Science Lab Report", completed=False, deadline=4, reward_value=15),
+    Task(title="History Reading", completed=False, deadline=2, reward_value=8),
+    Task(title="Coding Project", completed=False, deadline=5, reward_value=20)
+]
+        self.time_left = 5
+        self.stress = 0.5
+        return self._get_obs()    
+    
+    def _get_obs(self):
         # Returns the current state packaged in the Observation model
         return Observation(
             tasks=self.tasks,
@@ -38,18 +40,16 @@ def _get_obs(self):
                     task.completed = True
                     # Check if the deadline was met
                     if self.time_left >= task.deadline:
-                        reward += 10
+                         reward += task.reward_value   # reward based on task
                     else:
-                        reward -= 5  # Penalty for finishing after the deadline
+                         reward -= task.reward_value // 2  # penalty
                     break
 
         # --- 3. Update Environment State ---
         self.time_left -= 1
-        # Stress naturally increases slightly over time
         self.stress += 0.05
-        
-        # Check if the session is finished
-        # Done if time is up OR all tasks are completed
+        reward -= self.stress * 2
+    
         done = self.time_left <= 0 or all(t.completed for t in self.tasks)
         
         return self._get_obs(), reward, done, {}
