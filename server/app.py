@@ -18,6 +18,11 @@ async def step(action: Action):
 @app.get("/state")
 async def state():
     return env.state()
+    
+@app.get("/")
+async def health_check():
+    """Used by Hugging Face and the validator to check if the app is live."""
+    return {"status": "healthy", "message": "Student Study Buddy API is running"}
 
 def main():
     uvicorn.run(app, host="0.0.0.0", port=7860)
