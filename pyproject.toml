@@ -1,0 +1,15 @@
+[project]
+name = "student-study-buddy"
+version = "0.1.0"
+description = "AI Study Buddy Environment for OpenEnv"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openenv-core",
+    "pydantic",
+    "openai"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
