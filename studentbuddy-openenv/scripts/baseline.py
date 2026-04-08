@@ -1,3 +1,4 @@
+import streamlit as st
 from env.environment import StudentEnv
 from env.models import Action
 from env.grader import grade
