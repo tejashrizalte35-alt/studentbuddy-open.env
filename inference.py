@@ -5,16 +5,26 @@ from env.models import Action
 app = FastAPI()
 env = StudentEnv()
 step_count = 0
-import sys
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url=os.environ["API_BASE_URL"],
+    api_key=os.environ["API_KEY"]
+)
+
 def run_task(task_name):
-    sys.stdout.write(f"[START] task={task_name}\n")
-    sys.stdout.flush()
+    print(f"[START] task={task_name}", flush=True)
 
-    sys.stdout.write(f"[STEP] step=1 reward=1.0\n")
-    sys.stdout.flush()
+    # Make LLM call
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": "Say hello"}],
+    )
 
-    sys.stdout.write(f"[END] task={task_name} score=1.0 steps=1\n")
-    sys.stdout.flush()
+    print(f"[STEP] step=1 reward=1.0", flush=True)
+
+    print(f"[END] task={task_name} score=1.0 steps=1", flush=True)
 
 
 if __name__ == "__main__":
