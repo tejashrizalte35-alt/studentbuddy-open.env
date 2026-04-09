@@ -1,7 +1,6 @@
 import os
 from openai import OpenAI
 
-# Initialize client using provided proxy
 client = OpenAI(
     base_url=os.environ.get("API_BASE_URL"),
     api_key=os.environ.get("API_KEY")
@@ -11,15 +10,12 @@ def run_task(task_name):
     print(f"[START] task={task_name}", flush=True)
 
     try:
-        # Safe LLM call
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": "Say hello"}],
         )
         reward = 1.0
-
     except Exception as e:
-        # Handle failure (VERY IMPORTANT)
         print(f"Error: {e}", flush=True)
         reward = 0.0
 
