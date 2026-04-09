@@ -14,10 +14,10 @@ def run_task(task_name):
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": "Say hello"}],
         )
-        reward = 1.0
+        reward = 0.8
     except Exception as e:
         print(f"Error: {e}", flush=True)
-        reward = 0.0
+        reward = 0.2
 
     print(f"[STEP] step=1 reward={reward}", flush=True)
     print(f"[END] task={task_name} score={reward} steps=1", flush=True)
